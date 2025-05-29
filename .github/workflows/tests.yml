@@ -24,7 +24,8 @@ jobs:
           # cp shellcheck /usr/local/bin
       - name: ShellCheck - a lint checker for shell scripts
         run: |
-          cd /linux-unix
+          ls ${{ github.workspace }}
+          cd "${{ github.workspace }}/linux-unix"
           FILES=(*)
           errs=0
           for FILE in "${FILES[@]}"; do
