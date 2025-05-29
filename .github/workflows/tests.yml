@@ -1,0 +1,41 @@
+name: Tests
+run-name: ${{ github.actor }} is starting the tests action.
+on: [push]
+jobs:
+  Static-Analysis:
+  runs-on: ubuntu-latest
+  steps: 
+    - run: echo "The job was automatically triggered by a ${{ github.event_name }} event. By branch- ${{ github.ref }} , repo- ${{ github.repository }} ."
+    - name: Check out repository code
+      uses: actions/checkout@v4
+    - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+    - name: Install ShellCheck
+      run: |
+        wget -qO- https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.x86_64.tar.xz
+        ls
+        tar -xJf shellcheck-v0.10.0.linux.x86_64.tar.xz
+        ls
+        cd shellcheck-v0.10.0/
+        cp shellcheck /usr/local/bin
+        shellcheck -V
+    - name: ShellCheck - a lint checker for shell scripts
+      run: |
+        FILES=(*)
+        errs=0
+        for FILE in "${FILES[@]}"; do
+          echo "Checking $FILE ..."
+          shellcheck $FILE
+          er=$?
+          if [[ $er -ne 0 ]]; then
+            errs=$(($errs+1))
+          fi
+          echo "-----------------------------------------------------------------------------------------------------------------------"
+        done
+        if [[ $errs -gt 0 ]]; then
+          echo "FAILED: $errs Erros in shell script files. Kindly check above"
+          exit 1
+        else
+          echo "🎉 Woot! No lint or syntax errors."
+        fi
+    - run: echo "Tests check successful!🍏"
+          
