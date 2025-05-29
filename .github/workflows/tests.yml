@@ -12,7 +12,8 @@ jobs:
       - name: Install ShellCheck
         run: |
           wget -q -o shellcheck-v0.10.0.linux.x86_64.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.x86_64.tar.xz
-          apt install xz-utils -y
+          sudo apt update
+          sudo apt install xz-utils -y
           ls
           tar -xJf shellcheck-v0.10.0.linux.x86_64.tar.xz
           ls
