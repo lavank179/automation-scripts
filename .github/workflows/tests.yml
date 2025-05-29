@@ -11,15 +11,16 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Install ShellCheck
         run: |
-          wget -q -o shellcheck-v0.10.0.linux.x86_64.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.x86_64.tar.xz
+          # wget -q -o shellcheck-v0.10.0.linux.x86_64.tar.xz https://github.com/koalaman/shellcheck/releases/download/v0.10.0/shellcheck-v0.10.0.linux.x86_64.tar.xz
           sudo apt update
-          sudo apt install xz-utils -y
-          ls
-          echo "--"
-          tar -xJf shellcheck-v0.10.0.linux.x86_64.tar.xz
-          ls
-          cd shellcheck-v0.10.0/
-          cp shellcheck /usr/local/bin
+          sudo apt install shellcheck
+          # sudo apt install xz-utils -y
+          # ls
+          # echo "--"
+          # tar -xJf shellcheck-v0.10.0.linux.x86_64.tar.xz
+          # ls
+          # cd shellcheck-v0.10.0/
+          # cp shellcheck /usr/local/bin
           shellcheck -V
       - name: ShellCheck - a lint checker for shell scripts
         run: |
