@@ -4,7 +4,7 @@ Disk_Name="/mnt/c" #windows
 
 send_alert() {
   message=$1
-  echo "$1"
+  echo "$message"
 }
 
 check_disk_usage() {
