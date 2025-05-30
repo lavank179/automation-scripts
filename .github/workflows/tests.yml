@@ -25,6 +25,6 @@ jobs:
       - name: ShellCheck - a lint checker for shell scripts
         run: |
           cd "${{ github.workspace }}"
-          ./tests/linux-shellcheck.sh
+          sudo ./tests/linux-shellcheck.sh
       - run: echo "Tests check successful!🍏"
           
