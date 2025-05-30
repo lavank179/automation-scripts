@@ -7,7 +7,8 @@ FILES=(*)
 errs=0
 for FILE in "${FILES[@]}"; do
   echo "Checking $FILE ..."
-  shellcheck -e SC2086,SC2012,SC2207,SC2120,SC2119,SC2046 $FILE
+  # shellcheck -e SC2086,SC2012,SC2207,SC2120,SC2119,SC2046 $FILE
+  shellcheck $FILE
   er=$?
   if [[ $er -ne 0 ]]; then
     errs=$(($errs+1))
