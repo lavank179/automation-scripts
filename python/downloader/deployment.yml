@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-downloader
+  labels:
+    app: python-downloader
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-downloader
+  template:
+    metadata:
+      labels:
+        app: python-downloader
+    spec:
+      containers:
+      - name: python-downloader
+        image: downloader:v1
+        volumeMounts:
+        - name: secret-volume
+          mountPath: /opt
+        ports:
+        - containerPort: 8000
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: test-secret
